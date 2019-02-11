@@ -1,0 +1,25 @@
+version: '2'
+services:
+  web:
+    build: .
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: mysql2://root:pass@mysql:3306
+      MYSQL_ROOT_PASSWORD: 'pass'
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/taxProject  # localの.とdockerコンテナの/usr~Projectを同期
+    links:
+      - mysql
+    stdin_open: true
+    tty: true
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: pass
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./db/mysql/volumes:/var/lib/mysql
