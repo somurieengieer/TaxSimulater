@@ -1,6 +1,6 @@
 version: '2'
 services:
-  web:
+  app:
     build: .
     environment:
       RAILS_ENV: development
@@ -15,11 +15,13 @@ services:
     stdin_open: true
     tty: true
   mysql:
-    image: mysql
+    image: mysql:5.7.10
     environment:
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: 'pass'
     ports:
       - '3306:3306'
     volumes:
-      - ./db/mysql/volumes:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
+    driver: local
