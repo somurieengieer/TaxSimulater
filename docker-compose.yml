@@ -10,6 +10,12 @@ services:
       - '3000:3000'
     volumes:
       - .:/usr/src/taxProject  # localの.とdockerコンテナの/usr~Projectを同期
+      # exclude volumes(空のhogeをマウントさせる)
+      - hoge:/usr/src/taxProject/app/vendor
+      - hoge:/usr/src/taxProject/app/tmp
+      - hoge:/usr/src/taxProject/app/log
+      - hoge:/usr/src/taxProject/app/.git
+
     links:
       - mysql
     stdin_open: true
@@ -25,3 +31,4 @@ services:
 volumes:
   mysql-data:
     driver: local
+  hoge:

@@ -1,4 +1,4 @@
-class CalcController < ApplicationController
+class TaxesController < ApplicationController
   before_action :set_income_tax, only: [:income_tax]
 
   # GET /income_tax/1.json
